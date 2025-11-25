@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rosmatt Kenya - Best Electronics, Smartphones, and Laptops in Kenya.">
+    <title>Rosmatt Kenya | Electronics & Gadgets</title>
+    
+    <!-- Google Fonts for Aesthetic Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================
+           1. CSS VARIABLES (THEMING ENGINE)
+           ========================================= */
+        :root {
+            /* Default Theme: Royal Blue & Orange (Trust & Action) */
+            --primary-color: #0056b3; 
+            --accent-color: #ff9900;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-light: #666666;
+            --whatsapp-green: #25D366;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --radius: 8px;
+        }
+
+        /* Smooth scrolling for anchor links */
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background 0.3s ease;
+        }
+
+        /* =========================================
+           2. NAVIGATION & HEADER
+           ========================================= */
+        .top-banner {
+            background: var(--text-main);
+            color: white;
+            text-align: center;
+            padding: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        /* Desktop Nav */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover, nav a.active { color: var(--primary-color); }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Call Button Style */
+        .btn-call {
+            background-color: var(--text-main);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cart-trigger {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -8px;
+            background: var(--accent-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================================
+           3. HERO SECTION
+           ========================================= */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 30px; }
+
+        .btn-hero {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-hero:hover { transform: scale(1.05); }
+
+        /* =========================================
+           4. PAGE STRUCTURE (TABS)
+           ========================================= */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-container {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* =========================================
+           5. PRODUCT LAYOUT & CARDS
+           ========================================= */
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .category-header h2 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        /* Video Ad Container */
+        .ad-video-wrapper {
+            width: 100%;
+            height: 300px; /* Adjust height */
+            background-color: #000;
+            margin-bottom: 30px;
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .ad-video-wrapper iframe, .ad-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .ad-placeholder-text {
+            color: white;
+            font-size: 1.5rem;
+            border: 2px dashed #555;
+            padding: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            padding: 15px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        /* MKOPA BADGE */
+        .badge-mkopa {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(45deg, #009688, #4CAF50);
+            color: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 2;
+        }
+        
+        .badge-offer {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: var(--primary-color);
+            color: white;
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-bottom: 15px;
+        }
+
+        .product-info h3 {
+            font-size: 1rem;
+            margin: 0 0 5px 0;
+            color: var(--text-main);
+            height: 40px; /* Limits to 2 lines approx */
+            overflow: hidden;
+        }
+
+        .product-info .brand {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .price-box {
+            margin: 10px 0;
+        }
+
+        .current-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            color: #aaa;
+            margin-left: 5px;
+        }
+
+        .btn-add-cart {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: var(--text-main);
+            color: white;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-add-cart:hover { background-color: var(--accent-color); }
+
+        /* =========================================
+           6. ABOUT & FOUNDER SECTION
+           ========================================= */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .founder-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .founder-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--bg-color);
+            margin-bottom: 15px;
+        }
+
+        /* =========================================
+           7. THEME SWITCHER
+           ========================================= */
+        .theme-toggler {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .theme-options {
+            display: none; /* Hidden by default */
+            gap: 10px;
+        }
+
+        .theme-toggler:hover .theme-options { display: flex; }
+
+        .color-dot {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* =========================================
+           8. CART MODAL
+           ========================================= */
+        .cart-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2001;
+            display: none;
+            justify-content: flex-end;
+        }
+
+        .cart-overlay.open { display: flex; }
+
+        .cart-panel {
+            background: white;
+            width: 400px;
+            max-width: 90%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+        .cart-header {
+            padding: 20px;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .cart-footer {
+            padding: 20px;
+            background: #f1f1f1;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--whatsapp-green);
+            color: white;
+            padding: 15px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .nav-container { flex-direction: column; gap: 15px; }
+            .about-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .header-actions { margin-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- THEME SWITCHER -->
+    <div class="theme-toggler">
+        <span>🎨 Theme</span>
+        <div class="theme-options">
+            <!-- Blue/Orange -->
+            <div class="color-dot" style="background:#0056b3;" onclick="setTheme('#0056b3', '#ff9900')"></div>
+            <!-- Red/Black (ShopIQ style) -->
+            <div class="color-dot" style="background:#ed1c24;" onclick="setTheme('#ed1c24', '#222222')"></div>
+            <!-- Purple/Green -->
+            <div class="color-dot" style="background:#6a1b9a;" onclick="setTheme('#6a1b9a', '#00e676')"></div>
+            <!-- Teal/Gold -->
+            <div class="color-dot" style="background:#00897b;" onclick="setTheme('#00897b', '#fbc02d')"></div>
+        </div>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="top-banner">
+        <span>📞 Call: 0714227080</span>
+        <span>🚚 Countrywide Delivery</span>
+        <span>🛡️ Authorized Dealer: TCL, Hisense, HP, Samsung</span>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="switchTab('home')">Rosmatt <span>Kenya</span></a>
+            <nav>
+                <ul>
+                    <li><a class="active" onclick="switchTab('home')">Shop</a></li>
+                    <li><a onclick="switchTab('about')">About Founder</a></li>
+                    <li><a onclick="switchTab('terms')">Terms</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="tel:+254714227080" class="btn-call">📞 Call Now</a>
+                <div class="cart-trigger" onclick="toggleCart()">
+                    🛒 <span class="cart-count" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================
+         HOME TAB
+         ========================================= -->
+    <div id="home" class="tab-content active">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Upgrade Your Lifestyle</h1>
+            <p>Deals on Smart TVs, MKOPA Phones, Fridges & Laptops. Real Prices. Real Quality.</p>
+            <a href="#cat-tvs" class="btn-hero">START SHOPPING</a>
+        </section>
+
+        <!-- CATEGORY 1: TVs & AUDIO -->
+        <div class="section-container" id="cat-tvs">
+            <div class="category-header">
+                <h2>📺 Smart TVs & Audio Systems</h2>
+                <small>Partners: TCL, Hisense, Vitron, Globalstar</small>
+            </div>
+
+            <!-- ADVERTISEMENT VIDEO AREA -->
+            <div class="ad-video-wrapper">
+                 <!-- Replace the src below with your actual video clip URL or local file path -->
+                 <!-- Example: <video src="my_tv_ad.mp4" controls muted autoplay loop></video> -->
+                <div class="ad-placeholder-text">🎥 Your TV Promo Video Here</div>
+            </div>
+
+            <div class="product-grid">
+                <!-- Product 1: Vitron -->
+                <div class="product-card">
+                    <span class="badge-offer">-15% OFF</span>
+                    <img src="https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Vitron TV">
+                    <div class="product-info">
+                        <div class="brand">Vitron</div>
+                        <h3>Vitron 32" Frameless Smart TV (Android)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 12,500</span>
+                            <span class="old-price">KSh 14,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Vitron 32in Smart TV', 12500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Product 2: Hisense -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1601944179066-29786cb9d32a?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Hisense TV">
+                    <div class="product-info">
+                        <div class="brand">Hisense</div>
+                        <h3>Hisense 43" A6 Series 4K UHD Smart TV</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 34,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Hisense 43in 4K TV', 34000)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Product 3: TCL -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1552975084-6e027cd345c2?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="TCL TV">
+                    <div class="product-info">
+                        <div class="brand">TCL</div>
+                        <h3>TCL 55" P635 4K Google TV</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 58,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('TCL 55in Google TV', 58500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Product 4: Globalstar -->
+                <div class="product-card">
+                    <span class="badge-offer">HOT DEAL</span>
+                    <img src="https://images.unsplash.com/photo-1558882224-dda166733046?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Globalstar TV">
+                    <div class="product-info">
+                        <div class="brand">Globalstar</div>
+                        <h3>Globalstar 32" Digital LED TV</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 9,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Globalstar 32in Digital TV', 9500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Product 5: Sony Audio -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1545459720-aacfb5090334?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Sony HT">
+                    <div class="product-info">
+                        <div class="brand">Sony</div>
+                        <h3>Sony S20R 5.1ch Soundbar 400W</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 28,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Sony S20R Soundbar', 28000)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Product 6: Vitron Audio -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1615591321712-45e54d3d2245?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Subwoofer">
+                    <div class="product-info">
+                        <div class="brand">Vitron</div>
+                        <h3>Vitron V636 2.1ch Subwoofer</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 6,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Vitron V636 Subwoofer', 6500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- ... Add more items here (Copy/Paste 'product-card' div up to 20 times) ... -->
+                
+            </div>
+        </div>
+
+        <!-- CATEGORY 2: SMARTPHONES (MKOPA) -->
+        <div class="section-container">
+            <div class="category-header">
+                <h2>📱 Smartphones (MKOPA Available)</h2>
+                <small>Brands: Samsung, Nokia, Xiaomi, Tecno</small>
+            </div>
+
+            <!-- VIDEO AREA -->
+            <div class="ad-video-wrapper">
+                <div class="ad-placeholder-text">🎥 Your Phone Promo Video Here</div>
+            </div>
+
+            <div class="product-grid">
+                <!-- Phone 1: Samsung MKOPA -->
+                <div class="product-card">
+                    <span class="badge-mkopa">MKOPA AVAILABLE</span>
+                    <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Samsung A14">
+                    <div class="product-info">
+                        <div class="brand">Samsung</div>
+                        <h3>Samsung Galaxy A15 (4GB/64GB)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 21,500</span>
+                            <br><small style="color:green;">Deposit: KSh 4,500</small>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Samsung A15', 21500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Phone 2: Nokia G21 -->
+                <div class="product-card">
+                    <span class="badge-mkopa">MKOPA AVAILABLE</span>
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Phone">
+                    <div class="product-info">
+                        <div class="brand">Nokia</div>
+                        <h3>Nokia G21 (4GB/128GB)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 18,000</span>
+                            <br><small style="color:green;">Deposit: KSh 3,500</small>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Nokia G21', 18000)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Phone 3: Xiaomi Redmi -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Xiaomi">
+                    <div class="product-info">
+                        <div class="brand">Xiaomi</div>
+                        <h3>Redmi Note 13 (6GB/128GB)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 25,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Redmi Note 13', 25000)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Phone 4: Tecno Spark -->
+                <div class="product-card">
+                    <span class="badge-mkopa">MKOPA AVAILABLE</span>
+                    <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Tecno">
+                    <div class="product-info">
+                        <div class="brand">Tecno</div>
+                        <h3>Tecno Spark 10C</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 15,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Tecno Spark 10C', 15500)">ADD TO CART</button>
+                    </div>
+                </div>
+                 <!-- Add more items to reach 20 -->
+            </div>
+        </div>
+
+        <!-- CATEGORY 3: KITCHENWARE -->
+        <div class="section-container">
+            <div class="category-header">
+                <h2>🍳 Kitchen & Home Appliances</h2>
+                <small>Ailyons, Ramtons, Von</small>
+            </div>
+            
+            <div class="ad-video-wrapper">
+                <div class="ad-placeholder-text">🎥 Your Kitchen Promo Video Here</div>
+            </div>
+
+            <div class="product-grid">
+                <!-- Item 1: Fridge -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1584568694244-14fbdf83bd30?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Fridge">
+                    <div class="product-info">
+                        <div class="brand">Ailyons</div>
+                        <h3>Ailyons Single Door Fridge 90L</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 18,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Ailyons 90L Fridge', 18500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Item 2: Blender -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1570222094114-28a9d88a275e?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Blender">
+                    <div class="product-info">
+                        <div class="brand">Von</div>
+                        <h3>Von 2-in-1 Blender 500W</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 4,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Von Blender 500W', 4500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Item 3: Cooker -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1626143541742-960909099953?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Cooker">
+                    <div class="product-info">
+                        <div class="brand">Ramtons</div>
+                        <h3>Ramtons 2 Burner Table Top</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 3,200</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Ramtons 2 Burner', 3200)">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORY 4: LAPTOPS -->
+        <div class="section-container">
+            <div class="category-header">
+                <h2>💻 Laptops & Computing</h2>
+                <small>HP, Lenovo, Dell (Refurbished & New)</small>
+            </div>
+            
+            <div class="ad-video-wrapper">
+                <div class="ad-placeholder-text">🎥 Your Laptop Promo Video Here</div>
+            </div>
+
+            <div class="product-grid">
+                <!-- Laptop 1: HP -->
+                <div class="product-card">
+                    <span class="badge-offer">BESTSELLER</span>
+                    <img src="https://images.unsplash.com/photo-1588872657578-838c329902af?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="HP Laptop">
+                    <div class="product-info">
+                        <div class="brand">HP</div>
+                        <h3>HP EliteBook 840 G3 (Refurb, i5, 8GB, 256SSD)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 23,500</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('HP EliteBook 840 G3', 23500)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Laptop 2: Lenovo -->
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1593642632823-8f78536788c6?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Lenovo">
+                    <div class="product-info">
+                        <div class="brand">Lenovo</div>
+                        <h3>Lenovo ThinkPad X260 (Refurb, i5)</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 19,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Lenovo ThinkPad X260', 19000)">ADD TO CART</button>
+                    </div>
+                </div>
+
+                <!-- Laptop 3: Dell New -->
+                <div class="product-card">
+                    <span class="badge-offer">NEW</span>
+                    <img src="https://images.unsplash.com/photo-1593642532400-2682810df593?auto=format&fit=crop&w=500&q=60" loading="lazy" class="product-img" alt="Dell">
+                    <div class="product-info">
+                        <div class="brand">Dell</div>
+                        <h3>Dell Vostro 3510 Core i3 11th Gen</h3>
+                        <div class="price-box">
+                            <span class="current-price">KSh 48,000</span>
+                        </div>
+                        <button class="btn-add-cart" onclick="addToCart('Dell Vostro 3510', 48000)">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- =========================================
+         ABOUT TAB (FOUNDER)
+         ========================================= -->
+    <div id="about" class="tab-content">
+        <div class="section-container">
+            <h2 style="text-align:center; color: var(--primary-color);">Leadership & Vision</h2>
+            <div class="about-grid">
+                <div class="text-content">
+                    <h3>About Rosmatt Kenya</h3>
+                    <p>Rosmatt Kenya is a leading e-commerce platform dedicated to bridging the digital divide in Kenya. We partner with global giants like TCL, Hisense, and Samsung to bring genuine products to your doorstep.</p>
+                    <p>We are authorized agents for MKOPA, allowing flexible payment plans for smartphones to empower every Kenyan.</p>
+                </div>
+                <div class="founder-card">
+                    <!-- Replace src with actual image of Benard -->
+                    <img src="https://placehold.co/400x400?text=Benard+Achila" alt="Benard Achila" class="founder-img">
+                    <h3>Benard Achila</h3>
+                    <p style="color:var(--text-light); font-weight:bold;">Founder & CEO</p>
+                    <p>"At Rosmatt, we don't just sell electronics; we sell trust, quality, and a better lifestyle. Our commitment is to ensure every household in Kenya has access to modern technology."</p>
+                    <a href="tel:0714227080" class="btn-call" style="justify-content:center; margin-top:10px;">Call CEO Office</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         TERMS TAB
+         ========================================= -->
+    <div id="terms" class="tab-content">
+        <div class="section-container" style="background:white; padding:40px; border-radius:10px;">
+            <h1 style="color:var(--primary-color);">Terms and Conditions</h1>
+            <h3>1. Orders & Payment</h3>
+            <p>All orders placed on Rosmatt Kenya are subject to availability. Payment is largely Pay on Delivery within Nairobi and its environs. Upcountry orders may require a deposit.</p>
+            <h3>2. MKOPA Plans</h3>
+            <p>MKOPA devices require a valid National ID and a guarantor. Deposits must be paid directly to the paybill provided by our agents.</p>
+            <h3>3. Returns & Warranty</h3>
+            <p>Electronics come with a 1-year manufacturer warranty (TCL, Hisense, Samsung). Refurbished laptops have a 3-month warranty.</p>
+        </div>
+    </div>
+
+    <!-- =========================================
+         CART MODAL
+         ========================================= -->
+    <div class="cart-overlay" id="cart-modal">
+        <div class="cart-panel">
+            <div class="cart-header">
+                <h3>Shopping Cart</h3>
+                <span style="cursor:pointer; font-size:1.5rem;" onclick="toggleCart()">&times;</span>
+            </div>
+            <div class="cart-body" id="cart-items">
+                <!-- JS Injects items here -->
+                <p>Your cart is empty.</p>
+            </div>
+            <div class="cart-footer">
+                <h3 style="text-align:right;" id="cart-total">Total: KSh 0</h3>
+                <button class="checkout-btn" onclick="checkoutWhatsApp()">COMPLETE ORDER ON WHATSAPP</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         JAVASCRIPT LOGIC
+         ========================================= -->
+    <script>
+        // --- 1. THEME SWITCHER LOGIC ---
+        function setTheme(primary, accent) {
+            const root = document.documentElement;
+            root.style.setProperty('--primary-color', primary);
+            root.style.setProperty('--accent-color', accent);
+            // Optional: Save preference to localStorage
+            localStorage.setItem('rosmatt-primary', primary);
+            localStorage.setItem('rosmatt-accent', accent);
+        }
+
+        // Check for saved theme on load
+        window.onload = () => {
+            const savedPrimary = localStorage.getItem('rosmatt-primary');
+            const savedAccent = localStorage.getItem('rosmatt-accent');
+            if (savedPrimary) setTheme(savedPrimary, savedAccent);
+        };
+
+        // --- 2. TAB SWITCHING ---
+        function switchTab(tabId) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            // Show target tab
+            document.getElementById(tabId).classList.add('active');
+            // Update Nav state
+            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+            // (Simple logic assumes index 0 is home, 1 about, 2 terms for simplicity, 
+            // or we could use ID matching if we added IDs to links)
+            window.scrollTo(0,0);
+        }
+
+        // --- 3. SHOPPING CART LOGIC ---
+        let cart = [];
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            if (modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            } else {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCartDisplay();
+            // Open cart immediately to show confirmation
+            document.getElementById('cart-modal').style.display = 'flex';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cart-items');
+            const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+            
+            countEl.innerText = cart.length;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p style="text-align:center; margin-top:20px;">Your cart is empty.</p>';
+                totalEl.innerText = 'Total: KSh 0';
+                return;
+            }
+
+            let html = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>KSh ${item.price.toLocaleString()}</small>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">Remove</button>
+                    </div>
+                `;
+            });
+
+            cartContainer.innerHTML = html;
+            totalEl.innerText = 'Total: KSh ' + total.toLocaleString();
+        }
+
+        // --- 4. WHATSAPP CHECKOUT LOGIC ---
+        function checkoutWhatsApp() {
+            if (cart.length === 0) {
+                alert("Please add items to your cart first.");
+                return;
+            }
+
+            let message = "Hello Rosmatt Kenya, I want to place an order:%0a%0a";
+            let total = 0;
+
+            cart.forEach((item, i) => {
+                message += `${i+1}. ${item.name} - KSh ${item.price}%0a`;
+                total += item.price;
+            });
+
+            message += `%0a*TOTAL: KSh ${total.toLocaleString()}*%0a`;
+            message += "-----------------------%0a";
+            message += "My Delivery Location: ";
+
+            // Phone number format: 254714227080
+            const phone = "254714227080"; 
+            const url = `https://wa.me/${phone}?text=${message}`;
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
